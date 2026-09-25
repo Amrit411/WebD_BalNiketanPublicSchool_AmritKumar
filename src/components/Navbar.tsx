@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             : 'bg-[#080B12]/80 backdrop-blur-sm border-[#243048]/40 py-3.5 sm:py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
 
           {/* Brand Logo */}
           <button
@@ -83,8 +83,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </button>
 
-          {/* Desktop & Laptop Nav Links: shrink-0 and clean gap so it NEVER wraps or collides */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 shrink-0">
+          {/* Desktop & Laptop Nav Links */}
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-6 shrink-0">
             {navLinks.map((link) => {
               const isActive = currentView === link.id;
               return (
@@ -107,28 +107,22 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Action Buttons */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Ambient Sound Drone Toggle */}
             <button
               onClick={handleToggleSound}
-              title={isAudioActive ? 'Mute Sacred 432Hz Sound' : 'Play Sacred 432Hz Sound'}
+              title={isAudioActive ? 'Mute Sacred 432Hz Soundscape' : 'Play Sacred 432Hz Soundscape (Procedural Drone)'}
               aria-label="Toggle ambient sacred soundscape"
-              className={`flex items-center gap-1.5 h-8 px-2.5 rounded-lg border text-xs font-mono transition-all cursor-pointer shrink-0 ${
+              className={`flex items-center justify-center h-8 w-8 rounded-lg border text-xs font-mono transition-all cursor-pointer shrink-0 ${
                 isAudioActive
                   ? 'bg-[#D4AF37]/20 border-[#D4AF37] text-[#FDE047] shadow-[0_0_12px_rgba(212,175,55,0.35)]'
                   : 'bg-[#161F30]/70 border-[#243048] text-[#9CA3AF] hover:text-[#F5F5F0] hover:border-[#D4AF37]/50'
               }`}
             >
               {isAudioActive ? (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
-                  <span className="text-[10px] text-[#D4AF37] font-semibold tracking-wider">SOUND ON</span>
-                </>
+                <Volume2 className="w-4 h-4 text-[#D4AF37] animate-pulse" />
               ) : (
-                <>
-                  <VolumeX className="w-3.5 h-3.5" />
-                  <span className="text-[10px] tracking-wider">SOUND</span>
-                </>
+                <VolumeX className="w-4 h-4" />
               )}
             </button>
 
@@ -136,11 +130,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             {onOpenOracle && (
               <button
                 onClick={onOpenOracle}
-                title="Consult Fate's Oracle (Daily Tarot Divination)"
-                className="hidden xl:inline-flex items-center gap-1.5 h-8 px-2.5 text-xs font-serif-ancient tracking-wider uppercase text-[#D4AF37] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 border border-[#D4AF37]/50 rounded-lg transition-all cursor-pointer shadow-sm hover:shadow-[0_0_15px_rgba(212,175,55,0.25)] shrink-0"
+                title="Fate's Oracle (Daily Tarot Divination)"
+                aria-label="Fate's Oracle"
+                className="flex items-center justify-center h-8 w-8 rounded-lg border border-[#D4AF37]/50 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/25 text-[#D4AF37] transition-all cursor-pointer shadow-sm hover:shadow-[0_0_12px_rgba(212,175,55,0.25)] shrink-0"
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span className="font-bold">Oracle</span>
+                <Sparkles className="w-4 h-4 text-[#D4AF37]" />
               </button>
             )}
 
@@ -148,34 +142,35 @@ export const Navbar: React.FC<NavbarProps> = ({
             {onOpenArena && (
               <button
                 onClick={onOpenArena}
-                title="Enter the Mythic Arena (Clash of Legends Showdown)"
-                className="hidden 2xl:inline-flex items-center gap-1.5 h-8 px-2.5 text-xs font-serif-ancient tracking-wider uppercase text-[#38BDF8] bg-[#38BDF8]/10 hover:bg-[#38BDF8]/20 border border-[#38BDF8]/40 rounded-lg transition-all cursor-pointer hover:shadow-[0_0_15px_rgba(56,189,248,0.25)] shrink-0"
+                title="Mythic Arena (Clash of Legends Showdown)"
+                aria-label="Mythic Arena"
+                className="flex items-center justify-center h-8 w-8 rounded-lg border border-[#38BDF8]/40 bg-[#38BDF8]/10 hover:bg-[#38BDF8]/25 text-[#38BDF8] transition-all cursor-pointer hover:shadow-[0_0_12px_rgba(56,189,248,0.25)] shrink-0"
               >
-                <Swords className="w-3.5 h-3.5 text-[#38BDF8]" />
-                <span className="font-bold">Arena</span>
+                <Swords className="w-4 h-4 text-[#38BDF8]" />
               </button>
             )}
 
+            {/* Codex Icon & Lore Vault */}
+            {onOpenArtworks && (
+              <button
+                onClick={onOpenArtworks}
+                title="Codex Icon & Lore Vault"
+                aria-label="Codex Vault"
+                className="flex items-center justify-center h-8 w-8 rounded-lg border border-[#D4AF37]/50 bg-[#161F30]/80 hover:bg-[#1E293B] text-[#D4AF37] hover:text-[#F4D58D] transition-all cursor-pointer shrink-0"
+              >
+                <Archive className="w-4 h-4 text-[#D4AF37]" />
+              </button>
+            )}
+
+            {/* Saved Bookmarks */}
             {favoriteCount > 0 && (
               <button
                 onClick={() => handleNavClick('explore')}
                 title={`${favoriteCount} saved legend${favoriteCount === 1 ? '' : 's'} in your personal pantheon`}
-                className="inline-flex items-center gap-1.5 h-8 px-2.5 text-xs font-mono text-[#F4D58D] bg-[#D4AF37]/15 border border-[#D4AF37]/40 rounded-lg hover:bg-[#D4AF37]/25 transition-all cursor-pointer shrink-0"
+                className="inline-flex items-center gap-1.5 h-8 px-2 sm:px-2.5 text-xs font-mono text-[#F4D58D] bg-[#D4AF37]/15 border border-[#D4AF37]/40 rounded-lg hover:bg-[#D4AF37]/25 transition-all cursor-pointer shrink-0"
               >
                 <Bookmark className="w-3.5 h-3.5 text-[#D4AF37] fill-[#D4AF37]" />
                 <span className="font-bold">{favoriteCount}</span>
-              </button>
-            )}
-
-            {onOpenArtworks && (
-              <button
-                onClick={onOpenArtworks}
-                className="hidden 2xl:flex items-center gap-1.5 h-8 px-2.5 text-xs text-[#D4AF37] hover:text-[#F4D58D] bg-[#161F30]/80 hover:bg-[#1E293B] border border-[#D4AF37]/50 rounded-lg transition-all cursor-pointer shrink-0"
-                title="Codex Icon & Lore Vault"
-                aria-label="Codex Vault"
-              >
-                <Archive className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span className="font-mono text-[11px]">Vault</span>
               </button>
             )}
 
